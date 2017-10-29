@@ -1,0 +1,18 @@
+# encryptor sub makefile
+
+SUB_INCLUDES := -I $(COMMON_SOURCES_DIR)
+SUB_INCLUDES += -I $(SUB_SOURCES_DIR)
+SUB_INCLUDES += -I $(BORINGSSL_INCLUDES_DIR)
+
+SUB_SOURCES := main.c
+SUB_SOURCES += Cryptor.c
+# SUB_SOURCES += BreakerCLAP.c
+
+SUB_EXECUTABLE := encryptor
+ifeq ($(OS), Windows_NT)
+	SUB_EXECUTABLE := encryptor.exe
+endif
+SUB_EXECUTABLE_DIR := build/bin/
+SUB_EXECUTABLE_FP := $(addprefix $(SUB_EXECUTABLE_DIR),$(SUB_EXECUTABLE))
+
+SUB_DEPS := $(COMMON_TARGET_NAME) $(BORINGSSL_TARGET_NAME)
